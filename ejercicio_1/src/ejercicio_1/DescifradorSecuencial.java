@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class DescifradorSecuencial {
 
-	public static long descifradorContraseñaSec(String contraseña){
+	public long descifrar(String contraseña){
 		// TODO Auto-generated method stub
 
 		Scanner teclado = new Scanner(System.in);
