@@ -27,8 +27,16 @@ public class Descifrador {
 		final int longitud = 4;
 		String contrasena;
 		byte[] hash;
+		long tiempoSec;
+		long tiempoPar;
+		Object mapa;
 		System.out.println("Introduce tu contraseña de " + longitud + " dígitos");
 		contrasena = sc.nextLine();
-		hash = getHash(contrasena);
+		hash =getHash(contrasena);
+		mapa = new HashMap().put(contrasena, mapa);
+		tiempoSec = descifrarContraseñaSec(contrasena);
+		tiempoPar = descifrarContraseñaPar(contrasena);
+		System.out.println("Contraseña descifrada secuencialmente en: " + tiempoSec + " ms");
+		System.out.println("Contraseña descifrada paralelamente en: " + tiempoPar + " ms");
 	}
 }
