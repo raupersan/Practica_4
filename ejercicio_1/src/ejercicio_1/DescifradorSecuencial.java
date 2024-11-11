@@ -6,12 +6,8 @@ import java.util.Scanner;
 
 public class DescifradorSecuencial {
 
-<<<<<<< HEAD
 	public static long descifradorContraseñaSec(String contraseña){
 		// TODO Auto-generated method stub
-=======
-	public static void main(String[] args) {
->>>>>>> 42afe89e8c53cdea100a7de63a4c92fdec317ab8
 
 		Scanner teclado = new Scanner(System.in);
 		//Random ran = new Random();
