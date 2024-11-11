@@ -1,52 +1,40 @@
 package ejercicio_1;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class DescifradorSecuencial {
 
-	public long descifrar(int ini, int longitud, byte[] contraseña) {
+	public static void descifrar(int longitud, byte[] contraseña) {
 		// TODO Auto-generated method stub
 
-		Scanner teclado = new Scanner(System.in);
-		boolean encontrado = false;
+		char[] contra = new char[longitud];
+		probarLetras(contra, 0,longitud);
 
-		char c = (char) ini;
-		final String cadena = "abcdefghijklmnñopqrstuvwxyz";
+	}
 
-		String aleatorio = "";
-		int contador = 0;
+	private static void probarLetras(char[]contra, int aux,int longitud) {
+		 if (aux == longitud) {
+	            System.out.println(Arrays.toString(contra));
+	            return;
+	        }
+	        
+	        for (char i = 'a'; i <= 'z'; i++) {
+	            contra[aux] = i;
+	            probarLetras(contra, aux + 1, longitud);
+	        }
+	}
 
-		long hora;
-		long tiempoFinal = 0;
-		do {
-			hora = System.currentTimeMillis();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 
-			for (int j = 0; j <longitud; j++) {
-				
-			
-			for (char i = 'a'; i <= 'z'; i++) {
+		String palabra = "casa";
+		int longitud = 7;
+		byte[] contraseña = palabra.getBytes();
 
-				aleatorio = aleatorio + i;
-				System.out.println("aleatorio: " + aleatorio.toString() + " " + "contraseña: " + contraseña);
+		descifrar(longitud, contraseña);
 
-				contador++;
-				if (aleatorio.equals(contraseña)) {
-					tiempoFinal = System.currentTimeMillis() - hora;
-					encontrado = true;
-				}
-				if (encontrado == true)
-					i = 'z';
-
-			}
-			//aleatorio = aleatorio + cadena.charAt(i);
-			}
-			System.out.println("aleatorio: " + aleatorio + " " + "contraseña: " + contraseña);
-		} while (!aleatorio.equals(contraseña));
-		System.out.println("El numero de intentos ha sido de: " + contador);
-		teclado.close();
-		return tiempoFinal;
 	}
 
 }
+
+
