@@ -32,11 +32,15 @@ public class Descifrador {
 		Object mapa;
 		System.out.println("Introduce tu contraseña de " + longitud + " dígitos");
 		contrasena = sc.nextLine();
-		hash =getHash(contrasena);
-		mapa = new HashMap().put(contrasena, mapa);
-		tiempoSec = new DescifradorSecuencial().descifrar(contrasena);
-		tiempoPar = new DescifradorParalelo().descifrar(contrasena);
-		System.out.println("Contraseña descifrada secuencialmente en: " + tiempoSec + " ms");
-		System.out.println("Contraseña descifrada paralelamente en: " + tiempoPar + " ms");
+		hash = getHash(contrasena);
+
+		for (char a = 'a'; a <= 'z'; a++) {
+		//	new DescifradorSecuencial().descifrar(a, contrasena.length() - 1, hash);
+			new DescifradorParalelo().descifrar(a, contrasena.length() - 1, hash);
+			System.out.print(a);
+		}
+	//	System.out.println("Contraseña descifrada secuencialmente en: " + tiempoSec + " ms");
+	//	System.out.println("Contraseña descifrada paralelamente en: " + tiempoPar + " ms");
+
 	}
 }
