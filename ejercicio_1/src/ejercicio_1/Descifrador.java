@@ -27,20 +27,20 @@ public class Descifrador {
 		final int longitud = 4;
 		String contrasena;
 		byte[] hash;
-		long tiempoSec;
-		long tiempoPar;
+		long tiempo;
+		long tiempoFinal;
 		Object mapa;
 		System.out.println("Introduce tu contraseña de " + longitud + " dígitos");
 		contrasena = sc.nextLine();
 		hash = getHash(contrasena);
 
+		tiempo=System.currentTimeMillis();
+		//new DescifradorSecuencial().descifrar(contrasena.length(), hash);
 		for (char a = 'a'; a <= 'z'; a++) {
-		//	new DescifradorSecuencial().descifrar(a, contrasena.length() - 1, hash);
-			new DescifradorParalelo().descifrar(a, contrasena.length() - 1, hash);
-			System.out.print(a);
+			new DescifradorParalelo(a, contrasena.length() - 1, hash).start();
 		}
-	//	System.out.println("Contraseña descifrada secuencialmente en: " + tiempoSec + " ms");
-	//	System.out.println("Contraseña descifrada paralelamente en: " + tiempoPar + " ms");
-
+		tiempoFinal=System.currentTimeMillis()-tiempo;
+		
+		System.out.println("Contraseña descifrada en: " + tiempoFinal + " ms");
 	}
 }
