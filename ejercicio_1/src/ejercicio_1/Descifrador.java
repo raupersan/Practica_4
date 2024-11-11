@@ -34,8 +34,8 @@ public class Descifrador {
 		contrasena = sc.nextLine();
 		hash =getHash(contrasena);
 		mapa = new HashMap().put(contrasena, mapa);
-		tiempoSec = descifrarContraseñaSec(contrasena);
-		tiempoPar = descifrarContraseñaPar(contrasena);
+		tiempoSec = new DescifradorSecuencial().descifrar(contrasena);
+		tiempoPar = new DescifradorParalelo().descifrar(contrasena);
 		System.out.println("Contraseña descifrada secuencialmente en: " + tiempoSec + " ms");
 		System.out.println("Contraseña descifrada paralelamente en: " + tiempoPar + " ms");
 	}
