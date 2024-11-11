@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class DescifradorSecuencial {
 
-	public static void main(String[] args) {
+	public static long descifradorContraseñaSec(String contraseña){
 		// TODO Auto-generated method stub
 
 		Scanner teclado = new Scanner(System.in);
-		Random ran = new Random();
-		String contraseña;
+		//Random ran = new Random();
+		//String contraseña;
 		boolean encontrado= false;
 
 		final String cadena = "abcdefghijklmnñopqrstuvwxyz";
@@ -58,8 +58,9 @@ public class DescifradorSecuencial {
 			System.out.println("aleatorio: " + aleatorio + " " + "contraseña: " + contraseña);
 		} while (!aleatorio.equals(contraseña));
 		System.out.println("El numero de intentos ha sido de: " + contador);
-		System.out.println("Encontrado en " + tiempoFinal + " ms");
+		//System.out.println("Encontrado en " + tiempoFinal + " ms");
 		teclado.close();
+		return tiempoFinal;
 	}
 
 }
