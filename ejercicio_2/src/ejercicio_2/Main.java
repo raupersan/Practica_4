@@ -2,6 +2,9 @@ package ejercicio_2;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 	
@@ -44,8 +47,24 @@ public class Main {
 		int nJugadores;
 		System.out.println("Introduce el número de jugadores");
 		nJugadores= sc.nextInt();
+        ExecutorService es = Executors.newFixedThreadPool(nJugadores);
+        CyclicBarrier barrera = new CyclicBarrier(2, () -> {
+            System.out.println("Todos los jugadores han hecho 2 movimientos.");
+        });
+       
+       
 		iniciarTablero(tablero, nJugadores);
+<<<<<<< HEAD
 		crearMapa();
+=======
+		
+		 for (int i = 0; i < nJugadores; i++) {
+			 Integer nombre = i+1;
+			 String nom = nombre.toString();
+				es.submit(new Jugador(nom,0 ,new Posicion(0,0) , barrera));
+			}
+		 
+>>>>>>> 4bbc78dd059f7e117bbfa87f35cd0d6b49b32fc3
 	}
 
 	
