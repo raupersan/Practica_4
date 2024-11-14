@@ -6,11 +6,13 @@ public class Jugador implements Runnable{
 	private int id;
 	private int nPepitas;
 	private Posicion pos;
-	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr) {
+	Tipo tipo = J;
+	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr, Tipo tipo) {
 		super();
 		this.id = id;
 		this.nPepitas = nPepitas;
 		this.pos = pos;
+		this.tipo = tipo;
 	}
 	public int getId() {
 		return id;
