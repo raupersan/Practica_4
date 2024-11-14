@@ -54,9 +54,9 @@ public class Main {
        
        
 		iniciarTablero(tablero, nJugadores);
-<<<<<<< HEAD
+
 		crearMapa();
-=======
+
 		
 		 for (int i = 0; i < nJugadores; i++) {
 			 Integer nombre = i+1;
@@ -64,7 +64,7 @@ public class Main {
 				es.submit(new Jugador(nom,0 ,new Posicion(0,0) , barrera));
 			}
 		 
->>>>>>> 4bbc78dd059f7e117bbfa87f35cd0d6b49b32fc3
+
 	}
 
 	
