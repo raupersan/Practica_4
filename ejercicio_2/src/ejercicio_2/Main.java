@@ -41,17 +41,20 @@ public class Main {
 		}
 	}
 	
-	
 	public static void main(String[] args) {
 		HashMap tablero = null;
 		int nJugadores;
+		do {
 		System.out.println("Introduce el número de jugadores");
 		nJugadores= sc.nextInt();
+			if(nJugadores>100) {
+				
+			}
+		}while (nJugadores>100);
         ExecutorService es = Executors.newFixedThreadPool(nJugadores);
         CyclicBarrier barrera = new CyclicBarrier(nJugadores, () -> {
-            System.out.println("Todos los jugadores han hecho 2 movimientos.");
+            System.out.println("Todos los jugadores han hecho su movimiento.");
         });
-       
        
 		//iniciarTablero(nJugadores);
 
