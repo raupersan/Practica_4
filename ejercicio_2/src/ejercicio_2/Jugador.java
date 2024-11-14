@@ -59,7 +59,7 @@ public class Jugador implements Runnable {
 	private void mover() {
 		int nuevaPosX = this.getPos().getX()+1;
 		int nuevaPosY = this.getPos().getY()+0;
-		/*HashMap<Posicion, Integer> mapa = Main.crearMapa<Posicion, Integer>();
+		/*HashMap<Posicion, Tipo> mapa = Main.crearMapa<Posicion, Integer>();
 			if() {
 				this.setPos(new Posicion(nuevaPosX, nuevaPosY));
 		}
