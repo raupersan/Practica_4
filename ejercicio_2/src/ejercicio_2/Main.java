@@ -43,25 +43,23 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		HashMap tablero;
+		HashMap tablero = null;
 		int nJugadores;
 		System.out.println("Introduce el número de jugadores");
 		nJugadores= sc.nextInt();
         ExecutorService es = Executors.newFixedThreadPool(nJugadores);
-        CyclicBarrier barrera = new CyclicBarrier(2, () -> {
+        CyclicBarrier barrera = new CyclicBarrier(nJugadores, () -> {
             System.out.println("Todos los jugadores han hecho 2 movimientos.");
         });
        
        
-		iniciarTablero(tablero, nJugadores);
+		//iniciarTablero(nJugadores);
 
 		crearMapa();
 
-		
 		 for (int i = 0; i < nJugadores; i++) {
-			 Integer nombre = i+1;
-			 String nom = nombre.toString();
-				es.submit(new Jugador(nom,0 ,new Posicion(0,0) , barrera));
+			 Integer id = i+1;
+				es.submit(new Jugador(id,0 ,new Posicion(0,0) , barrera));
 			}
 		 
 

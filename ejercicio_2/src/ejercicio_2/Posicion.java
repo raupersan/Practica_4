@@ -1,6 +1,6 @@
 package ejercicio_2;
 
-public abstract class Posicion {
+public class Posicion {
 
 	private int x;
 	private int y;

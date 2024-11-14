@@ -3,20 +3,20 @@ package ejercicio_2;
 import java.util.concurrent.CyclicBarrier;
 
 public class Jugador implements Runnable{
-	private String nombre;
+	private int id;
 	private int nPepitas;
 	private Posicion pos;
-	public Jugador(String nombre, int nPepitas, Posicion pos, CyclicBarrier barr) {
+	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr) {
 		super();
-		this.nombre = nombre;
+		this.id = id;
 		this.nPepitas = nPepitas;
 		this.pos = pos;
 	}
-	public String getNombre() {
-		return nombre;
+	public int getId() {
+		return id;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getnPepitas() {
 		return nPepitas;
@@ -33,7 +33,7 @@ public class Jugador implements Runnable{
 	}
 	@Override
 	public String toString() {
-		return "Soy el jugador: " + nombre + " y tengo " + nPepitas + " pepitas";
+		return "Soy el jugador: " + id + " y tengo " + nPepitas + " pepitas";
 	}
 	
 	@Override
