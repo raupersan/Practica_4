@@ -52,13 +52,39 @@ public class Jugador implements Runnable {
 
 	@Override
 	public void run() {
-		this.mover();
+		this.mover(null);
 
 	}
 
-	private void mover() {
-		int nuevaPosX = this.getPos().getX()+1;
-		int nuevaPosY = this.getPos().getY()+0;
+	public void mover(HashMap tablero) {
+		Posicion pos;
+		if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))!=Tipo.JUGADOR) {
+			if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+				tablero.put(new Posicion(this.getPos().getX()+1, this.getPos().getY()), Tipo.JUGADOR);
+				this.setPos(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+			}
+				
+		}
+		else if(tablero.get(new Posicion(this.getPos().getX(), this.getPos().getY()+1))!=Tipo.JUGADOR){
+			if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+				tablero.put(new Posicion(this.getPos().getX()+1, this.getPos().getY()), Tipo.JUGADOR);
+				this.setPos(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+			}
+		}
 		/*HashMap<Posicion, Tipo> mapa = Main.crearMapa<Posicion, Integer>();
 			if() {
 				this.setPos(new Posicion(nuevaPosX, nuevaPosY));

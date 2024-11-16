@@ -50,6 +50,7 @@ public class Main {
 	public static void main(String[] args) {
 		HashMap tablero = null;
 		int nJugadores;
+		Jugador j;
 		do {
 			System.out.println("Introduce el número de jugadores");
 			nJugadores = sc.nextInt();
@@ -64,11 +65,13 @@ public class Main {
 
 		// iniciarTablero(nJugadores);
 
-		crearMapa();
+		tablero = crearMapa();
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
 			Integer id = i + 1;
-			es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR));
+			//es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR));
+			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR);
+			j.mover(tablero);
 		}
 	}
 }
