@@ -58,32 +58,52 @@ public class Jugador implements Runnable {
 
 	public void mover(HashMap tablero) {
 		Posicion pos;
-		if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))!=Tipo.JUGADOR) {
-			if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))==Tipo.MINA) {
+		//mueves una vez la x
+		if(tablero.get(pos = new Posicion(this.getPos().getX()+1, this.getPos().getY()))!=Tipo.JUGADOR) {
+			if(tablero.get(pos)==Tipo.MINA) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
 			}
 			else {
 				int pepTotal = this.getnPepitas()+1;
 				this.setnPepitas(pepTotal);
 				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
-				tablero.remove(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
-				tablero.put(new Posicion(this.getPos().getX()+1, this.getPos().getY()), Tipo.JUGADOR);
-				this.setPos(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
 			}
 				
 		}
-		else if(tablero.get(new Posicion(this.getPos().getX(), this.getPos().getY()+1))!=Tipo.JUGADOR){
-			if(tablero.get(new Posicion(this.getPos().getX()+1, this.getPos().getY()))==Tipo.MINA) {
+		//mueves una vez la y
+		else if(tablero.get(pos = new Posicion(this.getPos().getX(), this.getPos().getY()+1))!=Tipo.JUGADOR){
+			if(tablero.get(pos)==Tipo.MINA) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
 			}
 			else {
 				int pepTotal = this.getnPepitas()+1;
 				this.setnPepitas(pepTotal);
 				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
-				tablero.remove(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
-				tablero.put(new Posicion(this.getPos().getX()+1, this.getPos().getY()), Tipo.JUGADOR);
-				this.setPos(new Posicion(this.getPos().getX()+1, this.getPos().getY()));
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
 			}
+		}
+		//Mueves las dos
+		else if(tablero.get(pos = new Posicion(this.getPos().getX()+1, this.getPos().getY()+1))!=Tipo.JUGADOR){
+			if(tablero.get(pos)==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
+			}
+		}
+		//falta el resto de casos pero se entiende la idea
+		else {
+			System.out.println("Estás rodeado de jugadores y no te puedes mover");
 		}
 		/*HashMap<Posicion, Tipo> mapa = Main.crearMapa<Posicion, Integer>();
 			if() {
