@@ -62,13 +62,16 @@ public class Main {
 			}
 		} while (nJugadores > 10);
 		ExecutorService es = Executors.newFixedThreadPool(nJugadores);
+		
 		CyclicBarrier barrera = new CyclicBarrier(nJugadores, () -> {
+			//nJugadore== numero de hilos
+			//Tiene que ser atributo del hilo construido
 			System.out.println("Todos los jugadores han hecho su movimiento.");
 		});
 
-		// iniciarTablero(nJugadores);
+		// iniciarTablero(nJugadores); 
 
-		tablero = crearMapa(nJugadores);
+		tablero = new Tablero(nJugadores);
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
 			Integer id = i + 1;

@@ -62,6 +62,8 @@ public class Jugador implements Runnable {
 		if(tablero.get(pos = new Posicion(this.getPos().getX()+1, this.getPos().getY()))!=Tipo.JUGADOR) {
 			if(tablero.get(pos)==Tipo.MINA) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+				//TODO mirar exit
+				//Thread.currentThread();
 			}
 			else {
 				int pepTotal = this.getnPepitas()+1;
@@ -89,6 +91,45 @@ public class Jugador implements Runnable {
 		}
 		//Mueves las dos
 		else if(tablero.get(pos = new Posicion(this.getPos().getX()+1, this.getPos().getY()+1))!=Tipo.JUGADOR){
+			if(tablero.get(pos)==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
+			}
+		}	//mueves -una vez la x
+		else if(tablero.get(pos = new Posicion(this.getPos().getX()-1, this.getPos().getY()))!=Tipo.JUGADOR){
+			if(tablero.get(pos)==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
+			}
+		}	//mueves -una vez la y	
+		else if(tablero.get(pos = new Posicion(this.getPos().getX(), this.getPos().getY()-1))!=Tipo.JUGADOR){
+			if(tablero.get(pos)==Tipo.MINA) {
+				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
+			}
+			else {
+				int pepTotal = this.getnPepitas()+1;
+				this.setnPepitas(pepTotal);
+				System.out.println("Has encontrado una pepita, tu total es " +  this.getnPepitas() + " pepitas encontradas");
+				tablero.remove(pos);
+				tablero.put(pos, Tipo.JUGADOR);
+				this.setPos(pos);
+			}
+		} 	//mueves -una vez las dos
+		else if(tablero.get(pos = new Posicion(this.getPos().getX()-1, this.getPos().getY()-1))!=Tipo.JUGADOR){
 			if(tablero.get(pos)==Tipo.MINA) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
 			}
