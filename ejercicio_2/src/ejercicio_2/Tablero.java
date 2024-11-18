@@ -7,8 +7,8 @@ public class Tablero {
 
 	static Random random = new Random();
 
-	private int nJugadores;
-	private int nPepitas;
+	private static int nJugadores = 1;
+	private static int nPepitas = nJugadores*3;
 	private int nMinas;
 	private static HashMap<Posicion, Tipo> diccionarioPosiciones;
 
@@ -21,13 +21,40 @@ public class Tablero {
 
 	}
 
-	public static HashMap<Posicion, Tipo> crearMapa(int nJugadores) {
+	public static HashMap creandoMapa() {
 
-		/*
-		 * int[] posi; for (int i = 0; i < nJugadores/2; i++) { //posi[i]; }
-		 */
+		
+		int x = 15;
+		int y = 15;
+		int[][] mapa = new int[x][y];
+		Posicion posAux = null;
+		for (int xx = 0; xx < mapa.length; xx++) {
+			for (int yy = 0; yy < mapa[xx].length; yy++) {// Creacion del mapa
+				diccionarioPosiciones.put(posAux = new Posicion(xx, yy), Tipo.VOID);
+			}
+		}
+		
+		for (int i = 0; i < nPepitas; i++) {
+			int aleatorioXPepita = random.nextInt(mapa.length);
+			int aleatorioYPepita = random.nextInt(mapa.length);
+			
+			
+			if (diccionarioPosiciones.get(posAux) == Tipo.VOID) {
+			
+			diccionarioPosiciones.remove(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.VOID);
+			diccionarioPosiciones.put(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.PEPITA);
+			
+			}else {
+				nPepitas++;
+			}
+			
+		}
+		
+		return diccionarioPosiciones;
 
-		// HashMap<Posicion, Tipo> diccionarioPosiciones = new HashMap<>();
+	}
+
+	public static void imprimirMapa(int nJugadores) {
 
 		int x = 15;
 		int y = 15;
@@ -37,14 +64,7 @@ public class Tablero {
 		for (int xx = 0; xx < mapa.length; xx++) {
 			for (int yy = 0; yy < mapa[xx].length; yy++) {// Creacion del mapa
 
-				int aleatorioXPepita = random.nextInt(mapa.length);
-				int aleatorioYPepita = random.nextInt(mapa.length);
 
-				/*
-				 * if (aleatorioXPepita == xx && aleatorioYPepita == xx) {
-				 * diccionarioPosiciones.put(new Posicion(xx, yy), Tipo.PEPITA); }else {}
-				 */
-				diccionarioPosiciones.put(posAux = new Posicion(xx, yy), Tipo.VOID);
 
 				if (diccionarioPosiciones.get(posAux) == Tipo.PEPITA) {
 					System.out.print(" P ");
@@ -59,7 +79,7 @@ public class Tablero {
 			System.out.println();
 
 		}
-		return diccionarioPosiciones;// HashMap que almacena todas las posiciones del array
+
 	}
 
 }
