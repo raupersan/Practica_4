@@ -16,7 +16,7 @@ public class Main {
 
 
 	public static void main(String[] args) {
-		HashMap tablero = null;
+		Tablero tablero = null;
 		int nJugadores;
 		Jugador j;
 		do {
@@ -42,7 +42,7 @@ public class Main {
 			Integer id = i + 1;
 			// es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15),
 			// random.nextInt(15)), barrera, Tipo.JUGADOR));
-			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR);
+			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR, tablero);
 			j.mover(tablero);
 		}
 	}

@@ -9,7 +9,7 @@ public class Jugador implements Runnable {
 	private Posicion pos;
 	Tipo tipo;
 
-	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr, Tipo tipo) {
+	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr, Tipo tipo, Tablero tablero) {
 		super();
 		this.id = id;
 		this.nPepitas = nPepitas;
@@ -56,7 +56,7 @@ public class Jugador implements Runnable {
 
 	}
 
-	public void mover(HashMap tablero) {
+	public void mover(Tablero tablero) {
 		Posicion pos;
 		//mueves una vez la x
 		if(tablero.get(pos = new Posicion(this.getPos().getX()+1, this.getPos().getY()))!=Tipo.JUGADOR) {
