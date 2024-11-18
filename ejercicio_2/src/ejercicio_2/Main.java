@@ -11,12 +11,13 @@ public class Main {
 
 	static Scanner sc = new Scanner(System.in);
 
-	private static void iniciarTablero(HashMap tablero, int nJugadores) {
+	/*private static void iniciarTablero(HashMap tablero, int nJugadores) {
 
-	}
-	public static void crearMapa() {
+	}*/
 
-		HashMap<Posicion, Integer> diccionarioPosiciones = new HashMap<>();
+	public static HashMap<Posicion, Tipo> crearMapa() {
+
+		HashMap<Posicion, Tipo> diccionarioPosiciones = new HashMap<>();
 
 		int x = 17;
 		int y = 17;
@@ -44,7 +45,9 @@ public class Main {
 				}
 			}
 			System.out.println();
+
 		}
+		return diccionarioPosiciones;
 	}
 
 	public static void main(String[] args) {
@@ -69,7 +72,8 @@ public class Main {
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
 			Integer id = i + 1;
-			//es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR));
+			// es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15),
+			// random.nextInt(15)), barrera, Tipo.JUGADOR));
 			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR);
 			j.mover(tablero);
 		}
