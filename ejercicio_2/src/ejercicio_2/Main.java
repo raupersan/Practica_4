@@ -14,7 +14,6 @@ public class Main {
 	static Random random = new Random();
 
 
-
 	public static void main(String[] args) {
 		Tablero tablero = null;
 		int nJugadores;
@@ -33,9 +32,7 @@ public class Main {
 			//Tiene que ser atributo del hilo construido
 			System.out.println("Todos los jugadores han hecho su movimiento.");
 		});
-
 		// iniciarTablero(nJugadores); 
-
 		tablero = new Tablero(nJugadores);
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
