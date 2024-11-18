@@ -9,7 +9,7 @@ public class Tablero {
 
 	private static int nJugadores = 1;
 	private static int nPepitas = nJugadores*3;
-	private int nMinas;
+	private static int nMinas = nJugadores/2;
 	private static HashMap<Posicion, Tipo> diccionarioPosiciones;
 
 	public Tablero(int nJugadores) {
@@ -22,7 +22,7 @@ public class Tablero {
 		return false;
 	}
 
-	public static HashMap creandoMapa() {
+	public static HashMap crearMapa() {
 
 		
 		int x = 15;
@@ -36,21 +36,37 @@ public class Tablero {
 		}
 		
 		for (int i = 0; i < nPepitas; i++) {
-			int aleatorioXPepita = random.nextInt(mapa.length);
-			int aleatorioYPepita = random.nextInt(mapa.length);
+			int aleatorioXPepita = random.nextInt(mapa.length);//Posicion aleatorio para la x
+			int aleatorioYPepita = random.nextInt(mapa.length);//posicion aleatorio para la y
 			
 			
 			if (diccionarioPosiciones.get(posAux) == Tipo.VOID) {
 			
-			diccionarioPosiciones.remove(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.VOID);
-			diccionarioPosiciones.put(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.PEPITA);
+			diccionarioPosiciones.remove(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.VOID);//quitas del hashmap  el vacio
+			diccionarioPosiciones.put(posAux = new Posicion(aleatorioXPepita, aleatorioYPepita), Tipo.PEPITA);//añades al hashmap
 			
-			}else {
+			}else {//si intenta entrar en una casilla que no esta vacia se le suma 1 al numero de pepitas para "rehacer" el intento
 				nPepitas++;
 			}
 			
 		}
 		
+		for (int i = 0; i < nMinas; i++) {
+			int aleatorioXMina = random.nextInt(mapa.length);//Posicion aleatorio para la x
+			int aleatorioYMina = random.nextInt(mapa.length);//posicion aleatorio para la y
+			
+			
+			if (diccionarioPosiciones.get(posAux) == Tipo.VOID) {//Entra en el if solo si el hueco que estamos comprobando esta vacio
+			
+			diccionarioPosiciones.remove(posAux = new Posicion(aleatorioXMina, aleatorioYMina), Tipo.VOID);//quitas del hashmap  el vacio
+			diccionarioPosiciones.put(posAux = new Posicion(aleatorioXMina, aleatorioYMina), Tipo.MINA);//añades al hashmap
+			
+			}else {//si intenta entrar en una casilla que no esta vacia se le suma 1 al numero de minas para "rehacer" el intento
+				nMinas++;
+			}
+			
+		}
+		imprimirMapa(nJugadores);
 		return diccionarioPosiciones;
 
 	}
