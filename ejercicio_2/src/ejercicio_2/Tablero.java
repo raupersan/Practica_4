@@ -17,8 +17,9 @@ public class Tablero {
 		this.nJugadores = nJugadores;
 	}
 
-	public static void comprobarPosicion() {
-
+	public static boolean intentarMover(){
+		
+		return false;
 	}
 
 	public static HashMap creandoMapa() {
@@ -60,11 +61,11 @@ public class Tablero {
 		int y = 15;
 		int[][] mapa = new int[x][y];
 		int k = 0;
-		Posicion posAux = null;
+		
 		for (int xx = 0; xx < mapa.length; xx++) {
 			for (int yy = 0; yy < mapa[xx].length; yy++) {// Creacion del mapa
 
-
+				Posicion posAux = new Posicion(xx, yy);
 
 				if (diccionarioPosiciones.get(posAux) == Tipo.PEPITA) {
 					System.out.print(" P ");
