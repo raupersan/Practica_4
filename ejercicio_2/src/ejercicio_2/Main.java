@@ -65,7 +65,7 @@ public class Main {
 
 		// iniciarTablero(nJugadores);
 
-		tablero = crearMapa();
+		tablero = crearMapa(nJugadores);
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
 			Integer id = i + 1;
