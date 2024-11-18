@@ -43,7 +43,7 @@ public class Main {
 			j.mover(tablero);
 		}
 		*/
-		Tablero.crearMapa();
+		tablero.crearMapa();
 		
 	}
 }

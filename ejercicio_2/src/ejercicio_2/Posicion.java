@@ -24,5 +24,6 @@ public class Posicion {
 	public String toString() {
 		return "Posicion X : " + getX() + " Posicion Y: "  + getY();
 	}
-	
+	@Override
+	public void compareTo() {}
 }
