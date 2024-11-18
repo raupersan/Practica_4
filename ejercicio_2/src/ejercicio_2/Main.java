@@ -35,12 +35,15 @@ public class Main {
 		// iniciarTablero(nJugadores); 
 		tablero = new Tablero(nJugadores);
 		Random random = new Random();
-		for (int i = 0; i < nJugadores; i++) {
+		/*for (int i = 0; i < nJugadores; i++) {
 			Integer id = i + 1;
 			// es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15),
 			// random.nextInt(15)), barrera, Tipo.JUGADOR));
 			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR, tablero);
 			j.mover(tablero);
 		}
+		*/
+		Tablero.crearMapa();
+		
 	}
 }
