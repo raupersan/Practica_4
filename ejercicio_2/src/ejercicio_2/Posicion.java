@@ -25,5 +25,12 @@ public class Posicion {
 		return "Posicion X : " + getX() + " Posicion Y: "  + getY();
 	}
 	@Override
-	public void compareTo() {}
+	public boolean equals(Object p1) {
+		Posicion p2 = (Posicion) p1;
+		if(this.x == p2.x && this.y == p2.y) {
+			return true;
+			
+		}else
+		return false;
+	}
 }
