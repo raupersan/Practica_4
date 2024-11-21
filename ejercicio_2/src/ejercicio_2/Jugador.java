@@ -59,7 +59,7 @@ public class Jugador implements Runnable {
 	public void mover(Tablero tablero) {
 		Posicion pos;
 		//mueves una vez la x
-		if(!Tablero.intentarMover(getPos())) {
+		if(!tablero.intentarMover(new Posicion (this.getPos().getX()+1,this.getPos().getY()))) {
 			if(tablero.get(pos)==Tipo.MINA) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
 				//TODO mirar exit
