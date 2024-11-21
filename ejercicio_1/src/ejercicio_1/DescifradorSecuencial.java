@@ -4,45 +4,31 @@ import java.util.Arrays;
 
 public class DescifradorSecuencial {
 
-	public static void descifrar(int longitud, byte[] contraseña,String palabra) {
+	public static void descifrar(int longitud, byte[] contraseña, String palabra) {
 		// TODO Auto-generated method stub
 
 		char[] contra = new char[longitud];
-		probarLetras(contra, 0,longitud,palabra);
+		probarLetras(contra, 0, longitud, palabra);
 
 	}
 
-	private static void probarLetras(char[]contra, int aux,int longitud,String palabra) {
-		 if (aux == longitud) {
-	           
-		        String prueba = new String(contra);
-			 	if(prueba.equals(palabra)) {
-			 		 System.out.println("¡Palabra encontrada: " + prueba + "!");
-		                System.exit(0); 
-			 	}else
-			 		System.out.println(Arrays.toString(contra));
-			 		
-	            return;
-	        }
+	private static void probarLetras(char[] contra, int aux, int longitud, String palabra) {
+		if (aux == longitud) {
 
-		 
-	        for (char i = 'a'; i <= 'z'; i++) {
-	            contra[aux] = i;
-	            probarLetras(contra, aux + 1, longitud,palabra);
-	        }
-	}
+			String prueba = new String(contra);
+			if (prueba.equals(palabra)) {
+				System.out.println("¡Palabra encontrada: " + prueba + "!");
+				System.exit(0);
+			} else
+				System.out.println(Arrays.toString(contra));
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+			return;
+		}
 
-		String palabra = "casa";
-		int longitud = 4;
-		byte[] contraseña = palabra.getBytes();
-
-		descifrar(longitud, contraseña,palabra);
-
+		for (char i = 'a'; i <= 'z'; i++) {
+			contra[aux] = i;
+			probarLetras(contra, aux + 1, longitud, palabra);
+		}
 	}
 
 }
-
-
