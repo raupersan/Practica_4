@@ -4,11 +4,14 @@ import java.util.Arrays;
 
 public class DescifradorSecuencial {
 
-	public static void descifrar(int longitud, byte[] contraseña, String palabra) {
+	public static void descifrar(int longitud, byte[] contraseña, String palabra,String letra) {
 		// TODO Auto-generated method stub
 
+		
+		
+		letra = letra + palabra;
 		char[] contra = new char[longitud];
-		probarLetras(contra, 0, longitud, palabra);
+		probarLetras(contra, 1, longitud, letra);
 
 	}
 
@@ -27,6 +30,7 @@ public class DescifradorSecuencial {
 
 		for (char i = 'a'; i <= 'z'; i++) {
 			contra[aux] = i;
+			contra[0] = 'c';
 			probarLetras(contra, aux + 1, longitud, palabra);
 		}
 	}
