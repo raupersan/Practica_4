@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Descifrador {
-
+//
 	static Scanner sc = new Scanner(System.in);
 
 	public static byte[] getHash(String text) {

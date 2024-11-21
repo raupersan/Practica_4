@@ -4,7 +4,7 @@ public class DescifradorParalelo extends Thread {
 	private char a;
 	private int longitud;
 	private byte[] contraseña;
-
+//
 	public DescifradorParalelo(char a, int longitud, byte[] contraseña) {
 		this.a = a;
 		this.longitud = longitud;
