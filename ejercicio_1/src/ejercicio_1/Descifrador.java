@@ -1,10 +1,11 @@
-package ejercicio_1;
+package src.ejercicio_1;
 
 import java.util.HashMap;
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.*;
 
 public class Descifrador {
 //
@@ -33,11 +34,12 @@ public class Descifrador {
 		System.out.println("Introduce tu contraseña de " + longitud + " dígitos");
 		contrasena = sc.nextLine();
 		hash = getHash(contrasena);
-
 		tiempo=System.currentTimeMillis();
+		ExecutorService es = Executors.newFixedThreadPool(26);
+
 		//new DescifradorSecuencial().descifrar(contrasena.length(), hash);
 		for (char a = 'a'; a <= 'z'; a++) {
-			new DescifradorParalelo(a, contrasena.length() - 1, hash).start();
+			es.submit(new DescifradorParalelo(a, contrasena.length() - 1, hash));
 		}
 		tiempoFinal=System.currentTimeMillis()-tiempo;
 		

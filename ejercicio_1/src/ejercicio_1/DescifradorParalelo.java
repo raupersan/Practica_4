@@ -1,4 +1,4 @@
-package ejercicio_1;
+package src.ejercicio_1;
 
 public class DescifradorParalelo extends Thread {
 	private char a;
@@ -12,7 +12,8 @@ public class DescifradorParalelo extends Thread {
 	}
 
 	public boolean descifrar() {
-		char[] comprobar={'a', 'a', 'a', 'a'};
+		
+		char[] comprobar={this.a, 'a', 'a', 'a'};
 		boolean encontrado = false;
 		String aux = null;
 		for (int i = 0; i < longitud && !encontrado; i++) {
