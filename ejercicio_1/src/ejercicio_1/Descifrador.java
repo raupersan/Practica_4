@@ -27,13 +27,11 @@ public class Descifrador {
 	public static void main(String[] args) {
 		int longitud = 4;
 		String contrasena;
-		byte[] hash;
 		long tiempo;
 		long tiempoFinal;
 		Object mapa;
 		System.out.println("Introduce tu contraseña");
 		contrasena = sc.nextLine();
-		hash = getHash(contrasena);
 		tiempo=System.currentTimeMillis();
 		ExecutorService es = Executors.newFixedThreadPool(26);
 
