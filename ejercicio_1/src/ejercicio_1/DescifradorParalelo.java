@@ -1,32 +1,49 @@
 package src.ejercicio_1;
 
+import java.util.Arrays;
+
 public class DescifradorParalelo extends Thread {
-	private char a;
 	private int longitud;
 	private byte[] contraseña;
+	private String palabra;
+	private char letra;
 //
-	public DescifradorParalelo(char a, int longitud, byte[] contraseña) {
-		this.a = a;
+	public DescifradorParalelo(int longitud, byte[] contraseña, String palabra,char letra) {
 		this.longitud = longitud;
 		this.contraseña = contraseña;
+		this.palabra = palabra;
+		this.letra = letra;
 	}
 
-	public boolean descifrar() {
+	public void descifrar() {
+		String aux ;
 		
-		char[] comprobar={this.a, 'a', 'a', 'a'};
-		boolean encontrado = false;
-		String aux = null;
-		for (int i = 0; i < longitud && !encontrado; i++) {
-			for (char j = 'a'; j < 'z'; j++) {
-				comprobar[0]= this.a;
-				comprobar[i] = j;
-				aux = comprobar.toString();
-				if (Descifrador.getHash(aux).equals(contraseña)) {
-					encontrado = true;
-				}
-			}
+		aux = letra + palabra;
+		char[] contra = new char[longitud];
+		probarLetras(contra, 1, longitud, aux);
+
+	}
+
+	private void probarLetras(char[] contra, int aux, int longitud, String palabra) {
+		if (aux == longitud) {
+
+			String prueba = new String(contra);
+			prueba= letra+prueba;
+			if (prueba.equals(palabra)) {
+				System.out.println("¡Palabra encontrada: " + prueba + "!");
+
+				System.exit(0);
+			} else
+				System.out.println(Arrays.toString(contra));
+
+			return;
 		}
-		return true;
+
+		for (char i = 'a'; i <= 'z'; i++) {
+			contra[aux] = i;
+			contra[0] = this.letra;
+			probarLetras(contra, aux + 1, longitud, palabra);
+		}
 	}
 
 	@Override

@@ -5,8 +5,6 @@ import java.util.Arrays;
 public class DescifradorSecuencial {
 
 	public static void descifrar(int longitud, byte[] contraseña, String palabra,String letra) {
-		// TODO Auto-generated method stub
-
 		
 		
 		letra = letra + palabra;
