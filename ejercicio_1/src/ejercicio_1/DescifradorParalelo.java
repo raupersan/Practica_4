@@ -7,12 +7,22 @@ public class DescifradorParalelo extends Thread {
 	private byte[] contraseña;
 	private String palabra;
 	private char letra;
-//
-	public DescifradorParalelo(int longitud, byte[] contraseña, String palabra,char letra) {
+	
+	public boolean isEncontrado() {
+		return encontrado;
+	}
+
+	public void setEncontrado(boolean encontrado) {
+		this.encontrado = encontrado;
+	}
+
+	private boolean encontrado = false;
+	public DescifradorParalelo(int longitud, byte[] contraseña, String palabra,char letra, boolean encontrado) {
 		this.longitud = longitud;
 		this.contraseña = contraseña;
 		this.palabra = palabra;
 		this.letra = letra;
+		this.encontrado=encontrado;
 	}
 
 	public void descifrar() {
@@ -31,8 +41,7 @@ public class DescifradorParalelo extends Thread {
 			prueba= letra+prueba;
 			if (prueba.equals(palabra)) {
 				System.out.println("¡Palabra encontrada: " + prueba + "!");
-
-				System.exit(0);
+				setEncontrado(true);
 			} else
 				System.out.println(Arrays.toString(contra));
 

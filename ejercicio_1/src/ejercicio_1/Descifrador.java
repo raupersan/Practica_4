@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.*;
 
 public class Descifrador {
-//
+
 	static Scanner sc = new Scanner(System.in);
 
 	public static byte[] getHash(String text) {
@@ -37,9 +37,11 @@ public class Descifrador {
 		tiempo=System.currentTimeMillis();
 		ExecutorService es = Executors.newFixedThreadPool(26);
 
-		//new DescifradorSecuencial().descifrar(contrasena.length(), hash);
 		for (char a = 'a'; a <= 'z'; a++) {
-			es.submit(new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a));
+			DescifradorParalelo aux;
+			es.submit(aux = new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a,false));
+			if(aux.isEncontrado())
+				es.shutdown();
 		}
 		tiempoFinal=System.currentTimeMillis()-tiempo;
 		
