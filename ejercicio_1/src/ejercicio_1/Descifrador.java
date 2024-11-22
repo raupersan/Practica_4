@@ -36,7 +36,7 @@ public class Descifrador {
 
 		for (char a = 'a'; a <= 'z'; a++) {
 			DescifradorParalelo aux;
-			es.submit(aux = new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a,false));
+			es.submit(aux = new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a));
 			
 		}
 		tiempoFinal=System.currentTimeMillis()-tiempo;
