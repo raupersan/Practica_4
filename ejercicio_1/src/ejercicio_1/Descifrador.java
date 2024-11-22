@@ -20,7 +20,7 @@ public class Descifrador {
 		contrasena = sc.nextLine();
 		//tiempo = System.currentTimeMillis();
 		ExecutorService es = Executors.newFixedThreadPool(26);
-
+		System.out.println("Buscando...");
 		for (char a = 'a'; a <= 'z'; a++) {
 			DescifradorParalelo aux;
 			es.submit(aux = new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a));

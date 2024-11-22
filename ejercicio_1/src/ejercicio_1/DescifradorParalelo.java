@@ -49,10 +49,10 @@ public class DescifradorParalelo extends Thread {
 			String prueba = new String(contra);
 			byte[] hash = getHash(prueba);
 			if(diccionarioContraseñas.containsKey(prueba)) {
-				sleep(1500);
 				System.out.println(prueba);
 		/**/		tiempoFinal = System.currentTimeMillis() - tiempo;
-		/**/		System.out.println("Contraseña descifrada en: " + tiempoFinal + " ms");
+					double tiempoSeg = (double)tiempoFinal/1000; 
+		/**/		System.out.println("Contraseña descifrada en: " + tiempoFinal + " ms (" + tiempoSeg + ")s");
 				System.exit(0);
 			}
 			return;
