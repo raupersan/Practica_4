@@ -10,7 +10,13 @@ public class DescifradorParalelo extends Thread {
 	private byte[] contraseña;
 	private String palabra;
 	private char letra;
-
+	
+	/**
+	 * @param tiempo		Guarda el momento exacto en el que el hilo comienza a paralelizar
+	 * @param tiempoFinal	Calcula el tiempo actual y le resta el tiempo en el que empezó el proceso,
+	 * 						obteniendo así el tiempo en ms que tardó en descubrir la contraseña
+	 */
+	
 	/**/long tiempo;
 	/**/long tiempoFinal;
 
@@ -33,13 +39,28 @@ public class DescifradorParalelo extends Thread {
 
 	/**
 	 * 
-	 * @param contra
-	 * @param aux
-	 * @param longitud
-	 * @param contraHash
-	 * @throws InterruptedException
+	 * @param contra				Array de char que recoge las nuevas letras que se van probando, ya que la primera es conocida
+	 * @param aux					Cuenta el tamaño de el previo array, y cuando tenga el mismo tamaño que la contraseña,
+	 * 								el programa empezará a comprobar si esa cadena coincide con la contraseña
+	 * 
+	 * @param longitud				Tamaño de la contraseña			
+	 * @param contraHash			Contraseña hasheada
+	 * @throws InterruptedException	Controla la interrupción inesperada de un hilo
 	 */
 	private void probarLetras(char[] contra, int aux, int longitud, byte[] contraHash) throws InterruptedException {
+		/*
+		 * <p>
+		 * Función recursiva que añade letras tantas veces como tamaño tenga la contrasña -1,
+		 * ya que el primer dígito es conocido
+		 * </p>
+		 * 
+		 * <p>La contraseña se introduce en un hashmap con la palabra como clave
+		 * y la contraseña hasheada como valor, después se comprueba si la cadena 
+		 * que ha generado el hilo coincide con esta clave, de ser así, habrá encontrado
+		 * la contraseña y mostrará un mensaje con el tiempo que ha tardado en hacerlo</p>
+		 */
+		
+		
 		if (aux == longitud) {
 
 			HashMap<String, byte[]> diccionarioContraseñas = new HashMap<String, byte[]>();

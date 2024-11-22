@@ -32,6 +32,8 @@ public class Descifrador {
 			 * 			longitud de esta y la contraseña convertida en bytes</li>
 			 * 		<li>Haciendo submit llamamos al método run de la clase anteriormente creada, que
 			 * 			hereda la clase Thread para implementar la parelización</li>
+			 * </ul>
+			 * </p>
 			 */
 			
 			es.submit(new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a));
