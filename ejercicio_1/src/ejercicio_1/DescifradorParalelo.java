@@ -3,7 +3,6 @@ package src.ejercicio_1;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class DescifradorParalelo extends Thread {
@@ -11,11 +10,10 @@ public class DescifradorParalelo extends Thread {
 	private byte[] contraseña;
 	private String palabra;
 	private char letra;
-	
+
 	/**/long tiempo;
 	/**/long tiempoFinal;
-	
-	
+
 	public DescifradorParalelo(int longitud, byte[] contraseña, String palabra, char letra) {
 		this.longitud = longitud;
 		this.contraseña = contraseña;
@@ -25,9 +23,9 @@ public class DescifradorParalelo extends Thread {
 
 	public void descifrar() throws InterruptedException {
 		String aux;
-	/**/	tiempo = System.currentTimeMillis();
+		tiempo = System.currentTimeMillis();
 		aux = letra + palabra;
-		char[] contra = new char[(aux.length())-1];
+		char[] contra = new char[(aux.length()) - 1];
 		byte[] contraHash = getHash(aux);
 		probarLetras(contra, 1, longitud, contraHash);
 
@@ -47,12 +45,11 @@ public class DescifradorParalelo extends Thread {
 			HashMap<String, byte[]> diccionarioContraseñas = new HashMap<String, byte[]>();
 			diccionarioContraseñas.put(palabra, contraHash);
 			String prueba = new String(contra);
-			byte[] hash = getHash(prueba);
-			if(diccionarioContraseñas.containsKey(prueba)) {
+			if (diccionarioContraseñas.containsKey(prueba)) {
 				System.out.println(prueba);
-		/**/		tiempoFinal = System.currentTimeMillis() - tiempo;
-					double tiempoSeg = (double)tiempoFinal/1000; 
-		/**/		System.out.println("Contraseña descifrada en: " + tiempoFinal + " ms (" + tiempoSeg + ")s");
+				tiempoFinal = System.currentTimeMillis() - tiempo;
+				double tiempoSeg = (double) tiempoFinal / 1000;
+				System.out.println("Contraseña descifrada en: " + tiempoFinal + " ms (" + tiempoSeg + ")s");
 				System.exit(0);
 			}
 			return;
@@ -60,7 +57,7 @@ public class DescifradorParalelo extends Thread {
 		contra[0] = this.letra;
 		for (char i = 'a'; i <= 'z'; i++) {
 			contra[aux] = i;
-			
+
 			probarLetras(contra, aux + 1, longitud, contraHash);
 		}
 	}
@@ -88,7 +85,6 @@ public class DescifradorParalelo extends Thread {
 		try {
 			this.descifrar();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

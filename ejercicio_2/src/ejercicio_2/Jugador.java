@@ -52,11 +52,11 @@ public class Jugador implements Runnable {
 
 	@Override
 	public void run() {
-		this.mover(null);
+		this.mover();
 
 	}
 
-	public void mover(Tablero tablero) {
+	public void mover() {
 		Posicion pos;
 		//mueves una vez la x
 		if(!tablero.intentarMover(new Posicion (this.getPos().getX()+1,this.getPos().getY()))) {
