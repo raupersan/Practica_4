@@ -1,6 +1,5 @@
 package src.ejercicio_1;
 
-import java.util.HashMap;
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -38,8 +37,7 @@ public class Descifrador {
 		for (char a = 'a'; a <= 'z'; a++) {
 			DescifradorParalelo aux;
 			es.submit(aux = new DescifradorParalelo(contrasena.length(), contrasena.getBytes(), contrasena, a,false));
-			if(aux.isEncontrado())
-				es.shutdown();
+			
 		}
 		tiempoFinal=System.currentTimeMillis()-tiempo;
 		
