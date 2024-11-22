@@ -14,6 +14,7 @@ public class DescifradorSecuencial {
 	}
 
 	private static void probarLetras(char[] contra, int aux, int longitud, String palabra) {
+		
 		if (aux == longitud) {
 
 			String prueba = new String(contra);
