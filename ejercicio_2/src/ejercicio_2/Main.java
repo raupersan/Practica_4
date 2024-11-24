@@ -7,12 +7,12 @@ import java.util.Scanner;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
 
 	static Scanner sc = new Scanner(System.in);
 	static Random random = new Random();
-
 
 	public static void main(String[] args) {
 		Tablero tablero = null;
@@ -26,24 +26,32 @@ public class Main {
 			}
 		} while (nJugadores > 10);
 		ExecutorService es = Executors.newFixedThreadPool(nJugadores);
-		
+
 		CyclicBarrier barrera = new CyclicBarrier(nJugadores, () -> {
-			//nJugadore== numero de hilos
-			//Tiene que ser atributo del hilo construido
+			// nJugadore== numero de hilos
+			// Tiene que ser atributo del hilo construido
 			System.out.println("Todos los jugadores han hecho su movimiento.");
 		});
-		// iniciarTablero(nJugadores); 
+		// iniciarTablero(nJugadores);
 		tablero = new Tablero(nJugadores);
 		Random random = new Random();
-		/*for (int i = 0; i < nJugadores; i++) {
-			Integer id = i + 1;
-			// es.submit(new Jugador(id, 0, new Posicion(random.nextInt(15),
-			// random.nextInt(15)), barrera, Tipo.JUGADOR));
-			j = new Jugador(id, 0, new Posicion(random.nextInt(15), random.nextInt(15)), barrera, Tipo.JUGADOR, tablero);
-			j.mover(tablero);
+		for (int i = 0; i < nJugadores; i++) {
+			int id = i + 1;
+			Future<?> future = es.submit(() -> {
+				new Jugador(id, 0, new Posicion(random.nextInt(15),	random.nextInt(15)), barrera, Tipo.JUGADOR);
+				try {
+	                while (!Thread.currentThread().isInterrupted()) {
+	                    System.out.println("Partida en curso");
+	                    Thread.sleep(1000); 
+	                }
+	            } catch (InterruptedException e) {
+	                System.out.println("Un jugador ha perdido");
+	                Thread.currentThread().interrupt(); 
+	            }
+			});
+
+			tablero.crearMapa();
 		}
-		*/
-		tablero.crearMapa();
-		
+
 	}
 }

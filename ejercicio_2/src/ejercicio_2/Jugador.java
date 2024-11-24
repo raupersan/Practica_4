@@ -2,14 +2,15 @@ package ejercicio_2;
 
 import java.util.HashMap;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Future;
 
-public class Jugador implements Runnable {
+public class Jugador extends Thread {
 	private int id;
 	private int nPepitas;
 	private Posicion pos;
 	Tipo tipo;
 
-	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr, Tipo tipo, Tablero tablero) {
+	public Jugador(int id, int nPepitas, Posicion pos, CyclicBarrier barr, Tipo tipo) {
 		super();
 		this.id = id;
 		this.nPepitas = nPepitas;
@@ -59,11 +60,10 @@ public class Jugador implements Runnable {
 	public void mover() {
 		Posicion pos;
 		//mueves una vez la x
-		if(!tablero.intentarMover(new Posicion (this.getPos().getX()+1,this.getPos().getY()))) {
-			if(tablero.get(pos)==Tipo.MINA) {
+		if(this.intentarMover(new Posicion (this.getPos().getX()+1,this.getPos().getY()))) {
+			if(perdido) {
 				System.out.println("Has encontrado una mina y has perdido con un total de " + this.getnPepitas() + " pepitas");
-				//TODO mirar exit
-				//Thread.currentThread();
+				Thread.currentThread().interrupt();
 			}
 			else {
 				int pepTotal = this.getnPepitas()+1;

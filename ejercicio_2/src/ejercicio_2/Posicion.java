@@ -33,4 +33,11 @@ public class Posicion {
 		}else
 		return false;
 	}
+	 private static Posicion generarPosicion(Tablero tablero) {
+	        Posicion pos;
+	        do {
+	            pos = new Posicion(random.nextInt(BOARD_SIZE), random.nextInt(BOARD_SIZE));
+	        } while (!tablero.esPosicionVacia(pos));
+	        return pos;
+	    }
 }

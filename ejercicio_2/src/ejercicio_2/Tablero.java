@@ -113,5 +113,15 @@ public class Tablero {
 		}
 
 	}
-
+	 public boolean esPosicionVacia(Posicion pos) {
+	        return !tablero.containsKey(pos);
+	    }
+	  private Posicion generarPosicionAleatoria() {
+	        Random random = new Random();
+	        Posicion pos;
+	        do {
+	            pos = new Posicion(random.nextInt(size), random.nextInt(size));
+	        } while (tablero.containsKey(pos));
+	        return pos;
+	    }
 }
