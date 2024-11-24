@@ -8,6 +8,7 @@ public class Tablero {
 
 	static Random random = new Random();
 
+	private int tamañoTablero = 15;
 	private static int nJugadores = 1;
 	private static int nPepitas = nJugadores * 3;
 	private static int nMinas = nJugadores / 2;
@@ -31,11 +32,11 @@ public class Tablero {
 
 	public ConcurrentHashMap crearMapa() {
 
-		int x = 15;
-		int y = 15;
+		int x = tamañoTablero;
+		int y = tamañoTablero;
 		int[][] mapa = new int[x][y];
 
-		for (int xx = 0; xx < mapa.length; xx++) {
+		for (int xx = 0; xx < tamañoTablero; xx++) {
 			for (int yy = 0; yy < mapa[xx].length; yy++) {// Creacion del mapa
 
 				diccionarioPosiciones.put(new Posicion(xx, yy), Tipo.VOID);
@@ -44,17 +45,18 @@ public class Tablero {
 		}
 		System.out.println(diccionarioPosiciones);
 		Posicion posAux;
+		
 		for (int i = 0; i < nPepitas; i++) {
-			int aleatorioXPepita = random.nextInt(mapa.length);// Posicion aleatorio para la x
-			int aleatorioYPepita = random.nextInt(mapa.length);// posicion aleatorio para la y
+			
+			int aleatorioXPepita = random.nextInt(tamañoTablero);// Posicion aleatorio para la x
+			int aleatorioYPepita = random.nextInt(tamañoTablero);// posicion aleatorio para la y
 			posAux = new Posicion(aleatorioXPepita, aleatorioYPepita);
 
-			if (diccionarioPosiciones.containsKey(posAux)) {
-				if (diccionarioPosiciones.get(posAux).compareTo(Tipo.VOID) == 0) {
-
-					diccionarioPosiciones.remove(posAux, Tipo.VOID);// quitas del hashmap el vacio
-					diccionarioPosiciones.put(posAux, Tipo.PEPITA);// añades al hashmap
-
+/**/			if (diccionarioPosiciones.containsKey(posAux)) {
+				 System.out.println("Posición ya existe en el diccionario: " + posAux);
+				if (Tipo.VOID.equals(diccionarioPosiciones.get(posAux))) {
+					System.out.println("1231313131231231312312");
+					diccionarioPosiciones.replace(posAux, Tipo.PEPITA);//Remplazas el valor vacio por una pepita
 				} else {// si intenta entrar en una casilla que no esta vacia se le suma 1 al numero de
 						// pepitas para "rehacer" el intento
 					i--;
@@ -64,15 +66,14 @@ public class Tablero {
 		}
 
 		for (int i = 0; i < nMinas; i++) {
-			int aleatorioXMina = random.nextInt(mapa.length);// Posicion aleatorio para la x
-			int aleatorioYMina = random.nextInt(mapa.length);// posicion aleatorio para la y
+			int aleatorioXMina = random.nextInt(tamañoTablero);// Posicion aleatorio para la x
+			int aleatorioYMina = random.nextInt(tamañoTablero);// posicion aleatorio para la y
 			posAux = new Posicion(aleatorioXMina, aleatorioYMina);
 			System.out.println("For de minas");
 			if (diccionarioPosiciones.get(posAux) == Tipo.VOID) {// Entra en el if solo si el hueco que estamos
 																	// comprobando esta vacio
 
-				diccionarioPosiciones.remove(posAux, Tipo.VOID);// quitas del hashmap el vacio
-				diccionarioPosiciones.put(posAux, Tipo.MINA);// añades al hashmap
+				diccionarioPosiciones.replace(posAux, Tipo.MINA);//Remplazas el valor vacio por una mina
 
 			} else {// si intenta entrar en una casilla que no esta vacia se le suma 1 al numero de
 					// minas para "rehacer" el intento
@@ -87,12 +88,12 @@ public class Tablero {
 
 	public void imprimirMapa(int nJugadores) {
 
-		int x = 15;
-		int y = 15;
+		int x = tamañoTablero;
+		int y = tamañoTablero;
 		int[][] mapa = new int[x][y];
 		int k = 0;
 
-		for (int xx = 0; xx < mapa.length; xx++) {
+		for (int xx = 0; xx < tamañoTablero; xx++) {
 			for (int yy = 0; yy < mapa[xx].length; yy++) {// Creacion del mapa
 
 				Posicion posAux = new Posicion(xx, yy);
@@ -113,15 +114,17 @@ public class Tablero {
 		}
 
 	}
-	 public boolean esPosicionVacia(Posicion pos) {
-	        return !tablero.containsKey(pos);
-	    }
-	  private Posicion generarPosicionAleatoria() {
-	        Random random = new Random();
-	        Posicion pos;
-	        do {
-	            pos = new Posicion(random.nextInt(size), random.nextInt(size));
-	        } while (tablero.containsKey(pos));
-	        return pos;
-	    }
+
+	public boolean esPosicionVacia(Posicion pos) {
+		return !diccionarioPosiciones.containsKey(pos);
+	}
+
+	private Posicion generarPosicionAleatoria() {
+		Random random = new Random();
+		Posicion pos;
+		do {
+			pos = new Posicion(random.nextInt(tamañoTablero), random.nextInt(tamañoTablero));
+		} while (diccionarioPosiciones.containsKey(pos));
+		return pos;
+	}
 }
