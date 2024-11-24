@@ -15,7 +15,7 @@ public class Main {
 	static Random random = new Random();
 
 	public static void main(String[] args) {
-		Tablero tablero = null;
+		Tablero tablero;
 		int nJugadores;
 		Jugador j;
 		do {
@@ -28,30 +28,23 @@ public class Main {
 		ExecutorService es = Executors.newFixedThreadPool(nJugadores);
 
 		CyclicBarrier barrera = new CyclicBarrier(nJugadores, () -> {
-			// nJugadore== numero de hilos
-			// Tiene que ser atributo del hilo construido
+
 			System.out.println("Todos los jugadores han hecho su movimiento.");
 		});
 		// iniciarTablero(nJugadores);
-		tablero = new Tablero(nJugadores);
+		System.out.println("Indica el tamaño del tablero");
+		int tamTablero = sc.nextInt();
+		tablero = new Tablero(tamTablero, nJugadores);
+		tablero.crearMapa();
 		Random random = new Random();
 		for (int i = 0; i < nJugadores; i++) {
-			int id = i + 1;
-			Future<?> future = es.submit(() -> {
-				new Jugador(id, 0, new Posicion(random.nextInt(15),	random.nextInt(15)), barrera, Tipo.JUGADOR);
-				try {
-	                while (!Thread.currentThread().isInterrupted()) {
-	                    System.out.println("Partida en curso");
-	                    Thread.sleep(1000); 
-	                }
-	            } catch (InterruptedException e) {
-	                System.out.println("Un jugador ha perdido");
-	                Thread.currentThread().interrupt(); 
-	            }
-			});
-
-			tablero.crearMapa();
+			Posicion posInicial = generarPosicion(tablero);
+			Jugador jugador = new Jugador(i + 1, 0, posInicial, barrera, Tipo.JUGADOR, tablero);
+			es.submit(jugador);
 		}
+		;
+		es.shutdown();
 
 	}
+
 }
