@@ -1,13 +1,21 @@
 package ejercicio_3;
 
+import java.security.KeyStore.TrustedCertificateEntry;
 import java.util.ArrayList;
+import java.io.*;
 
 public class GestionTrasferencias {
 
-	private ArrayList<Cliente> clientes = (new LeerArchivos()).leerClientes();
-	
-	public void gestionTransferencias(ArrayList<Cliente> listaCliente, ArrayList<Transferencia> listaTransferencias) {
 
+
+	public void gestionTransferencias() {
+
+		try {
+			 ArrayList<Cliente> listaCliente = (new LeerArchivos()).leerClientes();
+			 ArrayList<Transferencia> listaTransferencias = (new LeerArchivos()).leerTransferencias();
+			
+
+		
 		for (Transferencia transferencia : listaTransferencias) {
 			for (Cliente clientes : listaCliente) {
 				if (transferencia.getOrigen().equals(clientes)) {
@@ -23,7 +31,9 @@ public class GestionTrasferencias {
 			}
 		}
 		
-		
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
 }

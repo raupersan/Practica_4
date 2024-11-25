@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 public class LeerArchivos {
 	Gson gson = new Gson();
 
-	public LeerArchivos() {
+	public LeerArchivos() throws IOException {
 
 	}
 
