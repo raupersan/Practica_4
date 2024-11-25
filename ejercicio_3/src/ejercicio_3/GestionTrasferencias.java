@@ -8,17 +8,7 @@ public class GestionTrasferencias {
 
 	public void gestionTransferencias() {
 
-		try {
-			ArrayList<Cliente> listaCliente = (new LeerArchivos()).leerClientes();
-			ArrayList<Transferencia[]> listaTransferencias = (new LeerArchivos()).leerTransferencias();
 
-			for (Transferencia[] transferenciArray : listaTransferencias) {
-				for (int i =0; i<transferenciArray.length; i++) {
-					t.procesar();
-				}
-				
-				
-				
 				
 				for (Cliente clientes : listaCliente) {
 					for (int i = 0; i < transferencia.length; i++) {
