@@ -14,7 +14,15 @@ public class Main {
 			ExecutorService es = Executors.newFixedThreadPool(10);
 			for (Transferencia[] transferenciaArray : listaTransferencias) {
 				for (int i = 0; i < transferenciaArray.length; i++) {
-				es.submit(new GestionTrasferencias(listaCliente, transferenciaArray[i]));
+				
+					/**
+					 * No sabemos acceder bien al Json así que dejamos indicado cómo tendría que 
+					 * lanzarse el hilo correspondiente					 * 
+					 * es.submit(new GestionTrasferencias(listaCliente, transferenciaArray[i]));
+					 */
+					
+				System.out.println("PRUEBA");
+				System.out.println(transferenciaArray[i]);
 				}
 			}
 		} catch (Exception e) {
