@@ -24,12 +24,6 @@ public class GestionTrasferencias extends Thread {
             }
         }
 
-        if (origen == null || destino == null) {
-            System.out.println("Transferencia fallida: Cliente no encontrado");
-            return;
-        }
-
-        // Determinar el orden de bloqueo para evitar interbloqueos
         Object primero, segundo;
         if (System.identityHashCode(origen) < System.identityHashCode(destino)) {
             primero = origen;
@@ -39,14 +33,13 @@ public class GestionTrasferencias extends Thread {
             segundo = origen;
         }
 
-        // Bloquear en el orden correcto
         synchronized (primero) {
             System.out.println(Thread.currentThread().getName() + " bloqueó " + origen.getId());
             try {
-                Thread.sleep(100); // Simula el tiempo de procesamiento
+                Thread.sleep(100);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
+               e.printStackTrace();
+
             }
             synchronized (segundo) {
                 System.out.println(Thread.currentThread().getName() + " bloqueó " + destino.getId());

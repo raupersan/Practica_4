@@ -59,14 +59,14 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public synchronized void restarSaldo(double monto) {
+	public void restarSaldo(double monto) {
 		if (saldo < monto) {
 			System.out.println("El saldo es menor que la cantidad a retirar");
 		}
 		saldo -= monto;
 	}
 
-	public synchronized void agregarSaldo(double monto) {
+	public void agregarSaldo(double monto) {
 		saldo += monto;
 	}
 
