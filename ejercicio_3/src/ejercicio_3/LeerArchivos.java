@@ -1,5 +1,13 @@
 package ejercicio_3;
 
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -23,14 +31,15 @@ public class LeerArchivos {
 		return clientes;
 	}
 
-	public ArrayList<Transferencia[]> leerTransferencias() throws IOException {
-		ArrayList<Transferencia[]> listaTransferencias = new ArrayList<Transferencia[]>();
+	public List<Transferencia> leerTransferencias() throws IOException {
+		List<Transferencia> listaTransferencias=null;
+		Type lista = new TypeToken<List<Transferencia>>() {}.getType();
 		Transferencia[] transferencias = null;
 		for (int i = 1; i <= 10; i++) {
 			String ruta = ".\\data\\Transferencias" + i + ".json";
 			FileReader fr = new FileReader(ruta);
-			transferencias = gson.fromJson(fr, Transferencia[].class);
-			listaTransferencias.add(transferencias);			
+			listaTransferencias=gson.fromJson(fr, lista);
+				
 		}
 		return listaTransferencias;
 	}
