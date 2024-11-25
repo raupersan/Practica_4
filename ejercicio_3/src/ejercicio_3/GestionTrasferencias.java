@@ -12,7 +12,7 @@ public class GestionTrasferencias {
 
 		try {
 			 ArrayList<Cliente> listaCliente = (new LeerArchivos()).leerClientes();
-			 ArrayList<Transferencia> listaTransferencias = (new LeerArchivos()).leerTransferencias();
+			 ArrayList<Transferencia[]> listaTransferencias = (new LeerArchivos()).leerTransferencias();
 			
 
 		

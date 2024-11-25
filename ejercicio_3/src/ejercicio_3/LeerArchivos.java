@@ -21,14 +21,14 @@ public class LeerArchivos {
 		return clientes;
 	}
 
-	public ArrayList<Transferencia> leerTransferencias() throws IOException {
-		ArrayList<Transferencia> listaTransferencias = new ArrayList<Transferencia>();
+	public ArrayList<Transferencia[]> leerTransferencias() throws IOException {
+		ArrayList<Transferencia[]> listaTransferencias = new ArrayList<Transferencia[]>();
 		Transferencia[] transferencias = null;
 		for (int i = 1; i <= 10; i++) {
 			String ruta = "./data/Transferencia" + i + ".json";
 			FileReader fr = new FileReader(ruta);
-			transferencias[i] = gson.fromJson(fr, Transferencia.class);
-			listaTransferencias.add(transferencias[i]);			
+			transferencias = gson.fromJson(fr, Transferencia[].class);
+			listaTransferencias.add(transferencias);			
 		}
 		return listaTransferencias;
 	}
