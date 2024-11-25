@@ -1,6 +1,6 @@
 package ejercicio_3;
 
-public class Transferencia {
+public class Transferencia extends Thread{
 
 	private Cliente origen;
 	private Cliente destino;
