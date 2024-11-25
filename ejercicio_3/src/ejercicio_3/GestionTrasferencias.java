@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GestionTrasferencias {
 
-	private ArrayList<Cliente> clientes = new LeerArchivos().leerClientes();
+	private ArrayList<Cliente> clientes = (new LeerArchivos()).leerClientes();
 	
 	public void gestionTransferencias(ArrayList<Cliente> listaCliente, ArrayList<Transferencia> listaTransferencias) {
 
