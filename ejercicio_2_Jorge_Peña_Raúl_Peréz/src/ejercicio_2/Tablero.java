@@ -52,7 +52,7 @@ public class Tablero {
 /**/			if (diccionarioPosiciones.containsKey(posAux)) {
 				 System.out.println("Posición ya existe en el diccionario: " + posAux);
 				if (Tipo.VOID.equals(diccionarioPosiciones.get(posAux))) {
-					System.out.println("1231313131231231312312");
+				
 					diccionarioPosiciones.put(posAux, Tipo.PEPITA);//Remplazas el valor vacio por una pepita
 				} else {// si intenta entrar en una casilla que no esta vacia se le suma 1 al numero de
 						// pepitas para "rehacer" el intento
