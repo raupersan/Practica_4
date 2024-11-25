@@ -1,8 +1,9 @@
 package ejercicio_3;
 
-import java.security.KeyStore.TrustedCertificateEntry;
+import java.util.concurrent.atomic.DoubleAdder;
 import java.util.ArrayList;
 import java.io.*;
+
 
 public class GestionTrasferencias extends Thread {
 
@@ -14,14 +15,15 @@ public class GestionTrasferencias extends Thread {
 		for (Cliente clientes : listaCliente) {
 
 			if (transferencia.getOrigen().equals(clientes.getId())) {
-				clientes.setSaldo(clientes.getSaldo() - transferencia.getMonto());
+				clientes.restarSaldo(transferencia.getMonto());
+				
 
 			}
 		}
 		for (Cliente cliente2 : listaCliente) {
 
 			if (transferencia.getDestino().equals(cliente2.getId())) {
-				cliente2.setSaldo(cliente2.getSaldo() + transferencia.getMonto());
+				 cliente2.agregarSaldo(transferencia.getMonto()); 
 
 			}
 		}

@@ -1,12 +1,16 @@
 package ejercicio_3;
 
+
+import java.util.concurrent.atomic.DoubleAdder;
+
 public class Cliente {
 
 	private String id;
 	private String nombre;
-	private double saldo;
+	private DoubleAdder saldo;
 	private String numeroCuenta;
 	private String direccion;
+	
 	public String getId() {
 		return id;
 	}
@@ -19,10 +23,10 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public double getSaldo() {
+	public DoubleAdder getSaldo() {
 		return saldo;
 	}
-	public void setSaldo(double saldo) {
+	public void setSaldo(DoubleAdder saldo) {
 		this.saldo = saldo;
 	}
 	public String getNumeroCuenta() {
@@ -37,7 +41,7 @@ public class Cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public Cliente(String id, String nombre, double saldo, String numeroCuenta, String direccion) {
+	public Cliente(String id, String nombre, DoubleAdder saldo, String numeroCuenta, String direccion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -45,11 +49,18 @@ public class Cliente {
 		this.numeroCuenta = numeroCuenta;
 		this.direccion = direccion;
 	}
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", saldo=" + saldo + ", numeroCuenta=" + numeroCuenta
-				+ ", direccion=" + direccion + "]";
-	}
+	 public void agregarSaldo(double monto) {
+	        saldo.add(monto);  // Sumamos al saldo
+	    }
+
+	    public void restarSaldo(double monto) {
+	        saldo.add(-monto);  // Restamos del saldo, sumando el negativo del monto
+	    }
+	
+	
+	
+	
+	
 	
 	
 }
