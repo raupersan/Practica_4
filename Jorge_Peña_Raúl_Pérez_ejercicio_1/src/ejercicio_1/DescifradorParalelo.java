@@ -33,7 +33,7 @@ public class DescifradorParalelo extends Thread {
 		aux = letra + palabra;
 		char[] contra = new char[(aux.length()) - 1];
 		byte[] contraHash = getHash(aux);
-		probarLetras(contra, 1, longitud, contraHash);
+		probarLetras(contra, , longitud, contraHash);
 
 	}
 
