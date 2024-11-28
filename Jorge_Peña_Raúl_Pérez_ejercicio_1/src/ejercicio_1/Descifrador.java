@@ -16,6 +16,7 @@ public class Descifrador {
 		String contrasena;
 		System.out.println("Introduce tu contraseña");
 		contrasena = sc.nextLine();
+		contrasena = contrasena.toLowerCase();
 		/**
 		 * @param contrasena  		Contraseña introducida por el usuario, será alfabética y en minúsculas
 		 */
